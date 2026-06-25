@@ -1,0 +1,20 @@
+<?php
+
+use App\Http\Controllers\Farmer\FarmerController;
+use App\Http\Controllers\Farmer\FarmerCropController;
+use Illuminate\Support\Facades\Route;
+
+
+
+Route::group(['prefix' => 'farmer'] , function(){
+
+    Route::get('farmerDashboard' , [FarmerController::class , 'farmerDashboard'])->name('farmer#dashboard');
+
+    Route::group(['prefix' => 'farmer'] , function(){
+        Route::get('directPage' , [FarmerCropController::class , 'directPage'])->name('farmer#directPage');
+        Route::post('create' , [FarmerCropController::class , 'create'])->name('farmer#create');
+        Route::get('list' , [FarmerCropController::class , 'list'])->name('famer#list');
+        Route::get('delete/{id}' , [FarmerCropController::class , 'delete'])->name('farmer#delete');
+    });
+
+});
