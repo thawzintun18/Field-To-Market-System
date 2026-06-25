@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers\Farmer;
 
 use App\Http\Controllers\Controller;
@@ -12,20 +11,22 @@ class FarmerCropController extends Controller
 {
 
     //directPage
-    public function directPage(){
+    public function directPage()
+    {
         return view('farmer.farmer.create');
     }
 
     // create
-    public function create(Request $request){
+    public function create(Request $request)
+    {
 
         $this->CheckData($request);
 
         $data = $this->GetData($request);
 
-        if($request->hasFile('image')){
+        if ($request->hasFile('image')) {
             $fileName = uniqid() . $request->file('image')->getClientOriginalName();
-            $request->file('image')->move(public_path() . '/FarmerImages/' , $fileName);
+            $request->file('image')->move(public_path() . '/FarmerImages/', $fileName);
             $data['image'] = $fileName;
         }
 
@@ -38,49 +39,64 @@ class FarmerCropController extends Controller
     }
 
     // CheckData
-    public function CheckData($request){
+    public function CheckData($request)
+    {
 
         $request->validate([
-            'image' => 'required',
-            'acre' => 'required',
-            'lat' => 'required',
-            'long' => 'required',
+            'image'   => 'required',
+            'acre'    => 'required',
+            'lat'     => 'required',
+            'long'    => 'required',
             'address' => 'required',
-            'region' => 'required'
+            'region'  => 'required',
         ]);
 
     }
 
     // GetData
-    public function GetData($request){
+    public function GetData($request)
+    {
 
         return [
-            'user_id' => Auth::user()->id,
-            'latitude' => $request->lat,
-            'longitude' => $request->long,
-            'address' => $request->address,
-            'region' => $request->region,
+            'user_id'        => Auth::user()->id,
+            'latitude'       => $request->lat,
+            'longitude'      => $request->long,
+            'address'        => $request->address,
+            'region'         => $request->region,
             'farm_size_acre' => $request->acre,
-            'image' => $request->image
+            'image'          => $request->image,
         ];
 
     }
 
     //list
-    public function list(){
+    public function list()
+    {
 
-        $farmer = Farmer::where('user_id' , Auth::user()->id)
-                        ->get();
+        $farmer = Farmer::where('user_id', Auth::user()->id)
+            ->get();
 
-        return view('farmer.farmer.list' , compact('farmer'));
+        return view('farmer.farmer.list', compact('farmer'));
     }
 
     //delete
-    public function delete($id){
+    public function delete($id)
+    {
 
-        Farmer::where('id' , $id)->delete();
+        Farmer::where('id', $id)->delete();
 
         return back();
+
+    }
+
+    //edit
+    public function edit($id)
+    {
+
+        $farmer = Farmer::where('id', $id)
+            ->first();
+
+        return view('farmer.farmer.edit', compact('farmer'));
 
     }
 }

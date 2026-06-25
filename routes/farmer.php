@@ -15,6 +15,8 @@ Route::group(['prefix' => 'farmer'] , function(){
         Route::post('create' , [FarmerCropController::class , 'create'])->name('farmer#create');
         Route::get('list' , [FarmerCropController::class , 'list'])->name('famer#list');
         Route::get('delete/{id}' , [FarmerCropController::class , 'delete'])->name('farmer#delete');
+        Route::get('edit/{id}' , [FarmerCropController::class , 'edit'])->name('farmer#edit');
+        Route::post('update/{id}' , [FarmerCropController::class , 'update'])->name('farmer#update');
     });
 
 });
