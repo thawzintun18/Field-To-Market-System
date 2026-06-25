@@ -40,7 +40,7 @@
                                 <div class=" d-flex justify-content-center my-2">
                                     <a href="" class=" mx-2 btn btn-outline"><i
                                             class="fa-solid fa-eye text-primary fs-md-5 fs-4"></i></a>
-                                    <a href="" class="mx-2 btn btn-outline"><i
+                                    <a href="{{ route('farmer#edit' , $item->id) }}" class="mx-2 btn btn-outline"><i
                                             class="fa-solid fa-pen-to-square fs-md-5 fs-4"></i></a>
                                     <button class="mx-2 btn btn-outline" onclick="DeleteData({{ $item->id }})"><i
                                             class="fa-solid fa-trash text-danger fs-md-5 fs-4"></i></button>
