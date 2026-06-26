@@ -2,6 +2,7 @@
 namespace App\Http\Controllers\Farmer;
 
 use App\Http\Controllers\Controller;
+use App\Models\Crop;
 use App\Models\Farmer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -72,11 +73,11 @@ class FarmerCropController extends Controller
     //list
     public function list()
     {
-
         $farmer = Farmer::where('user_id', Auth::user()->id)
             ->get();
+        $crops = Crop::get();
 
-        return view('farmer.farmer.list', compact('farmer'));
+        return view('farmer.farmer.list', compact('farmer', 'crops'));
     }
 
     //delete

@@ -25,7 +25,9 @@
         integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 
 
@@ -46,6 +48,40 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
+
+    {{-- slide crop button carousel  --}}
+    <style>
+        .slider {
+            overflow: hidden;
+            white-space: nowrap;
+            width: 100%;
+            padding: 20px 0;
+        }
+
+        .slide-track:hover {
+            animation-play-state: paused;
+        }
+
+        .slide-track {
+            display: inline-flex;
+            animation: scroll 15s linear infinite;
+        }
+
+        .slide-track button {
+            margin-right: 25px;
+            border-radius: 30px;
+        }
+
+        @keyframes scroll {
+            from {
+                transform: translateX(100%);
+            }
+
+            to {
+                transform: translateX(-100%);
+            }
+        }
+    </style>
 </head>
 
 <body class="index-page">
@@ -76,8 +112,8 @@
                         <li><a href="{{ route('farmer#dashboard') }}"
                                 class="{{ request()->routeIs('farmer#dashboard') ? 'active' : '' }}">ပင်မစာမျက်နှာ</a>
                         </li>
-                        <li><a href="{{ route('famer#list') }}"
-                                class="{{ request()->routeIs('famer#list') ? 'active' : '' }}">စိုက်ပျိုးမြေများ</a>
+                        <li><a href="{{ route('farmer#list') }}"
+                                class="{{ request()->routeIs('farmer#list') ? 'active' : '' }}">စိုက်ပျိုးမြေများ</a>
                         </li>
                         <li><a href="#services">သီးနှံစိုက်ပျိုးမှု</a></li>
                         <li><a href="#portfolio">Portfolio</a></li>
