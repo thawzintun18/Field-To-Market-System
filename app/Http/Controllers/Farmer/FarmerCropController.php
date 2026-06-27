@@ -21,7 +21,7 @@ class FarmerCropController extends Controller
     public function create(Request $request)
     {
 
-        $this->CheckData($request);
+        $this->CheckData($request, 'create');
 
         $data = $this->GetData($request);
 
@@ -33,29 +33,65 @@ class FarmerCropController extends Controller
 
         Farmer::create($data);
 
-        Alert::success('Success Title', 'Success Message');
+        Alert::success('Success Title', 'စိုက်ပျိုးမြေ အောင်မြင်စွာ ထည့်သွင်းပြီးပါပြီ။');
+
+        return back();
+
+    }
+
+    //update
+    public function update(Request $request, $id)
+    {
+
+        $this->CheckData($request, 'update');
+
+        $data = $this->GetData($request);
+
+        if ($request->hasFile('image')) {
+
+            $image_name = Farmer::where('id', $id)->value('image');
+
+            unlink(public_path('FarmerImages/' . $image_name));
+
+            $fileName = uniqid() . $request->file('image')->getClientOriginalName();
+            $request->file('image')->move(public_path() . '/FarmerImages/', $fileName);
+            $data['image'] = $fileName;
+
+        } else {
+
+            $image_name = Farmer::where('id', $id)->value('image');
+
+            $data['image'] = $image_name;
+        }
+
+        Farmer::where('id', $id)
+            ->update($data);
+
+        Alert::success('Success Title', 'စိုက်ပျိုးမြေအချက်အလက်များကို အောင်မြင်စွာ ပြင်ဆင်ပြီးပါပြီ။');
 
         return back();
 
     }
 
     // CheckData
-    public function CheckData($request)
+    private function CheckData($request, $action)
     {
-
-        $request->validate([
-            'image'   => 'required',
-            'acre'    => 'required',
-            'lat'     => 'required',
-            'long'    => 'required',
+        $checkData = [
+            'acre'    => 'required|numeric|min:0',
+            'lat'     => 'required|numeric|min:0',
+            'long'    => 'required|numeric|min:0',
             'address' => 'required',
             'region'  => 'required',
-        ]);
+        ];
+
+        $checkData['image'] = $action == 'create' ? 'required|file|mimes:jpg,jpeg,png,svg' : 'file|mimes:jpg,jpeg,png,svg';
+
+        $request->validate($checkData);
 
     }
 
     // GetData
-    public function GetData($request)
+    private function GetData($request)
     {
 
         return [
@@ -83,6 +119,9 @@ class FarmerCropController extends Controller
     //delete
     public function delete($id)
     {
+        $image_name = Farmer::where('id', $id)->value('image');
+
+        unlink(public_path('FarmerImages/' . $image_name));
 
         Farmer::where('id', $id)->delete();
 
@@ -98,6 +137,17 @@ class FarmerCropController extends Controller
             ->first();
 
         return view('farmer.farmer.edit', compact('farmer'));
+
+    }
+
+    //detail
+    public function detail($id)
+    {
+
+        $farmer = $farmer = Farmer::where('id', $id)
+            ->first();
+
+        return view('farmer.farmer.detail', compact('farmer'));
 
     }
 }

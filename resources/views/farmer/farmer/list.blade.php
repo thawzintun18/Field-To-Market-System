@@ -39,7 +39,7 @@
 
             <div class="d-md-flex justify-content-between my-5">
                 <div class="d-flex justify-content-start">
-                    <h3 class=" fw-bold">စိုက်ပျိုးမြေများ</h3>
+                    <h3 class=" fw-bold">စိုက်ပျိုးမြေစာရင်း</h3>
                 </div>
                 <div class="d-flex justify-content-end mt-1">
                     <a href="{{ route('farmer#directPage') }}" class=" add-btn"><i
@@ -73,7 +73,7 @@
                                     <p>{{ $item->farm_size_acre }}</p>
                                 </div>
                                 <div class=" d-flex justify-content-center my-2">
-                                    <a href="" class=" mx-2 btn btn-outline"><i
+                                    <a href="{{ route('farmer#detail', $item->id) }}" class=" mx-2 btn btn-outline"><i
                                             class="fa-solid fa-eye text-primary fs-md-5 fs-4"></i></a>
                                     <a href="{{ route('farmer#edit', $item->id) }}" class="mx-2 btn btn-outline"><i
                                             class="fa-solid fa-pen-to-square fs-md-5 fs-4"></i></a>
@@ -104,17 +104,18 @@
     <script>
         function DeleteData(id) {
             Swal.fire({
-                title: "Are you sure?",
-                text: "You won't be able to revert this!",
+                title: "သေချာပါသလား?",
+                text: "ဖျက်ပြီးပါက ပြန်လည်ရယူ၍ မရနိုင်ပါ။",
                 icon: "warning",
                 showCancelButton: true,
                 confirmButtonColor: "#3085d6",
                 cancelButtonColor: "#d33",
-                confirmButtonText: "Yes, delete it!"
+                confirmButtonText: "ဖျက်မည်",
+                cancelButtonText: "မဖျက်တော့ပါ"
             }).then((result) => {
                 if (result.isConfirmed) Swal.fire({
-                    title: "Deleted!",
-                    text: "Your file has been deleted.",
+                    title: "ဖျက်ပြီးပါပြီ!",
+                    text: "စိုက်ပျိုးမြေ အချက်အလက်ကို အောင်မြင်စွာ ဖျက်ပြီးပါပြီ။",
                     icon: "success"
                 });
 

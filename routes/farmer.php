@@ -16,7 +16,7 @@ Route::group(['prefix' => 'farmer'], function () {
         Route::get('delete/{id}', [FarmerCropController::class, 'delete'])->name('farmer#delete');
         Route::get('edit/{id}', [FarmerCropController::class, 'edit'])->name('farmer#edit');
         Route::post('update/{id}', [FarmerCropController::class, 'update'])->name('farmer#update');
-
+        Route::get('detail/{id}' , [FarmerCropController::class , 'detail'])->name('farmer#detail');
     });
     Route::group(['prefix' => 'crop'], function () {
         // Route::get('list', [CropController::class, 'list'])->name('farmer#list');
@@ -25,6 +25,7 @@ Route::group(['prefix' => 'farmer'], function () {
         Route::get('edit/{id}', [CropController::class, 'edit'])->name('farmer#editCrop');
         Route::post('edition', [CropController::class, 'edition'])->name('farmer#editionCrop');
         Route::delete('delete/{id}', [CropController::class, 'deleteCrop'])->name('farmer#deleteCrop');
+    Route::get('farmerDashboard' , [FarmerController::class , 'farmerDashboard'])->name('farmer#dashboard');
     });
 
 });
