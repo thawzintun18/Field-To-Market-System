@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>Index - CoreBiz Bootstrap Template</title>
+    <title>Field To Market System</title>
     <meta name="description" content="">
     <meta name="keywords" content="">
 
@@ -121,7 +121,7 @@
                         <li>
                             <form action=" {{ route('logout') }} " method="post">
                                 @csrf
-                                <button class=" btn btn-success ms-3">logout</button>
+                                <button class=" btn btn-success ms-3 rounded-5 px-3">ထွက်မည်</button>
                             </form>
                         </li>
                     </ul>

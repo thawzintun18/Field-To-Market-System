@@ -8,13 +8,13 @@
                     <h3 class=" fw-bold ">စိုက်ပျိုးမြေများ ထပ်ထည့်နိုင်ပါသည်</h3>
                 </div>
                 <div class=" d-flex justify-content-start gap-2 mt-3">
-                    <a href="{{ route('famer#list') }}">စိုက်ပျိုးမြေစာရင်း</a>
+                    <a href="{{ route('farmer#list') }}">စိုက်ပျိုးမြေစာရင်း</a>
                     <i class="fa-solid fa-arrow-right mt-1 text-primary"></i>
                     <a href="{{ route('farmer#edit', $farmer->id) }}">အချက်အလက်ပြင်ဆင်ရန်</a>
                 </div>
             </div>
             <div class=" d-flex justify-content-end mt-1">
-                <div class=""><a href="{{ route('famer#list') }}" class=" btn btn-success ">နောက်သို့</a></div>
+                <div class=""><a href="{{ route('farmer#list') }}" class=" btn btn-success rounded-5 px-3">နောက်သို့</a></div>
             </div>
         </div>
 
@@ -53,8 +53,8 @@
                             </div>
                             <div class="row ">
                                 <div class="col-md-6 my-3">
-                                    <label for="" class=" mb-2">latitude</label>
-                                    <input type="number" name="lat" value="{{ old('lat' , $farmer->latitude) }}"
+                                    <label for="" class=" mb-2">လတ္တီကျု</label>
+                                    <input type="number" name="lat" value="{{ old('lat' , $farmer->latitude) }}" placeholder="လတ္တီကျုထည့်ရန်"
                                         class="form-control @error('lat')
                                     is-invalid
                                 @enderror">
@@ -63,8 +63,8 @@
                                     @enderror
                                 </div>
                                 <div class="col-md-6 my-3" class=" mb-2">
-                                    <label for="">longitude</label>
-                                    <input type="number" name="long" value="{{ old('long' , $farmer->longitude) }}"
+                                    <label for="">လောင်ဂျီကျု</label>
+                                    <input type="number" name="long" value="{{ old('long' , $farmer->longitude) }}" placeholder="လောင်ဂျီကျုထည့်ရန်"
                                         class="form-control @error('long')
                                     is-invalid
                                 @enderror">
@@ -80,14 +80,14 @@
                                         class=" form-control w-100 @error('address')
                                     is-invalid
                                 @enderror"
-                                        rows="5">{{ old('address' , $farmer->address) }}</textarea>
+                                        rows="5" placeholder="စိုက်ပျိုးမြေ၏နေရာထည့်ရန်">{{ old('address' , $farmer->address) }}</textarea>
                                     @error('address')
                                         <div class="invalid-feedback"> {{ $message }} </div>
                                     @enderror
                                 </div>
                                 <div class="col-md-6 my-3">
                                     <label for="" class=" mb-2">တိုင်းဒေသကြီး</label>
-                                    <input type="text" name="region" value="{{ old('region' , $farmer->region) }}"
+                                    <input type="text" name="region" value="{{ old('region' , $farmer->region) }}" placeholder="တိုင်းဒေသကြီးထည့်ရန်"
                                         class="form-control @error('region')
                                     is-invalid
                                 @enderror">

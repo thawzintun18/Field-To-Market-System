@@ -9,13 +9,13 @@
                     <h3 class=" fw-bold ">စိုက်ပျိုးမြေ အသေးစိတ်အချက်အလက်များ</h3>
                 </div>
                 <div class=" d-flex justify-content-start gap-2 mt-3">
-                    <a href="{{ route('famer#list') }}">စိုက်ပျိုးမြေစာရင်း</a>
+                    <a href="{{ route('farmer#list') }}">စိုက်ပျိုးမြေစာရင်း</a>
                     <i class="fa-solid fa-arrow-right mt-1 text-primary"></i>
                     <a href="{{ route('farmer#detail', $farmer->id) }}">အသေးစိတ်ကြည့်ရှုရန်</a>
                 </div>
             </div>
             <div class=" d-flex justify-content-end mt-1">
-                <div class=""><a href="{{ route('famer#list') }}" class=" btn btn-success ">နောက်သို့</a></div>
+                <div class=""><a href="{{ route('farmer#list') }}" class=" btn btn-success rounded-5 px-3">နောက်သို့</a></div>
             </div>
         </div>
 
@@ -32,16 +32,16 @@
                                     <div class="col-md-4 mt-md-0 mt-2">
                                         <div class="card">
                                             <div class="card-body">
-                                                <h5 class=" text-center">latitude</h5>
-                                                <p class=" text-center fw-bold"> {{ $farmer->latitude }} </p>
+                                                <h5 class=" text-center">လတ္တီကျု</h5>
+                                                <p class=" text-center fw-bold"> {{ $farmer->latitude }} ° N</p>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-4 mt-md-0 mt-2">
                                         <div class="card">
                                             <div class="card-body">
-                                                <h5 class=" text-center">longitude</h5>
-                                                <p class=" text-center fw-bold"> {{ $farmer->longitude }} </p>
+                                                <h5 class=" text-center">လောင်ဂျီကျု</h5>
+                                                <p class=" text-center fw-bold"> {{ $farmer->longitude }} ° E</p>
                                             </div>
                                         </div>
                                     </div>

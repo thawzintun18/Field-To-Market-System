@@ -11,7 +11,7 @@
             @endphp
 
             <div class="d-md-flex justify-content-center">
-                <h3 class="fw-bold">ဝယ်ယူထားသောသီးနှံများ</h3>
+                <h3 class="fw-bold">ပိုင်ဆိုင်ထားသောသီးနှံများ</h3>
 
                 <div class="slider">
                     <div class="slide-track">
@@ -57,28 +57,31 @@
                             <div class="service-item">
                                 <div class="">
                                     <img src=" {{ asset('FarmerImages/' . $item->image) }} " class=" rounded-3"
-                                        width="100%" height="200px" alt="">
+                                        width="100%" height="150px" alt="">
                                 </div>
                                 <p class=" mt-3">စိုက်ပျိုးမြေ၏ အချက်အလက်များ</p>
                                 <div class="d-flex justify-content-between">
-                                    <p>latitude</p>
-                                    <p>{{ $item->latitude }}</p>
+                                    <p>လတ္တီကျု</p>
+                                    <p>{{ $item->latitude }} ° N</p>
                                 </div>
                                 <div class="d-flex justify-content-between">
-                                    <p>longitude</p>
-                                    <p>{{ $item->longitude }}</p>
+                                    <p>လောင်ဂျီကျု</p>
+                                    <p>{{ $item->longitude }} ° E</p>
                                 </div>
                                 <div class="d-flex justify-content-between">
                                     <p>စိုက်ပျိုးမြေဧက</p>
                                     <p>{{ $item->farm_size_acre }}</p>
                                 </div>
                                 <div class=" d-flex justify-content-center my-2">
-                                    <a href="{{ route('farmer#detail', $item->id) }}" class=" mx-2 btn btn-outline"><i
-                                            class="fa-solid fa-eye text-primary fs-md-5 fs-4"></i></a>
-                                    <a href="{{ route('farmer#edit', $item->id) }}" class="mx-2 btn btn-outline"><i
+                                    <a href="{{ route('farmer#detail', $item->id) }}"
+                                        class=" mx-1 btn btn-outline-primary"><i
+                                            class="fa-solid fa-eye fs-md-5 fs-4"></i></a>
+                                    <a href="{{ route('farmer#edit', $item->id) }}"
+                                        class="mx-1 btn btn-outline-secondary"><i
                                             class="fa-solid fa-pen-to-square fs-md-5 fs-4"></i></a>
-                                    <button class="mx-2 btn btn-outline" onclick="DeleteData({{ $item->id }})"><i
-                                            class="fa-solid fa-trash text-danger fs-md-5 fs-4"></i></button>
+                                    <button class="mx-1 btn btn-outline-danger"
+                                        onclick="DeleteData({{ $item->id }})"><i
+                                            class="fa-solid fa-trash fs-md-5 fs-5"></i></button>
                                 </div>
                                 <a href="service-details.html" class="service-link">
                                     <span>သီးနှံများစိုက်ပျိုးရန်</span>
@@ -113,13 +116,19 @@
                 confirmButtonText: "ဖျက်မည်",
                 cancelButtonText: "မဖျက်တော့ပါ"
             }).then((result) => {
-                if (result.isConfirmed) Swal.fire({
-                    title: "ဖျက်ပြီးပါပြီ!",
-                    text: "စိုက်ပျိုးမြေ အချက်အလက်ကို အောင်မြင်စွာ ဖျက်ပြီးပါပြီ။",
-                    icon: "success"
-                });
 
-                location.href = '/farmer/farmer/delete/' + id;
+                if (result.isConfirmed) {
+
+                    Swal.fire({
+                        title: "ဖျက်ပြီးပါပြီ!",
+                        text: "စိုက်ပျိုးမြေ အချက်အလက်ကို အောင်မြင်စွာ ဖျက်ပြီးပါပြီ။",
+                        icon: "success"
+                    }).then(() => {
+                        location.href = '/farmer/farmer/delete/' + id;
+                    });
+
+                }
+
             });
         }
     </script>

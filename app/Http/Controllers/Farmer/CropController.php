@@ -30,11 +30,13 @@ class CropController extends Controller
     }
     public function edition(Request $request)
     {
-        $crop = Crop::find($request->id);
+        $crop = Crop::findOrFail($request->id);
+
         $crop->name = $request->cropName;
         $crop->save();
 
-        Alert::success('Success Title', 'သီးနှံထည့်ခြင်းအောင်မြင်ပါသည်။');
+        Alert::success('Success Title', 'သီးနှံပြင်ဆင်ခြင်းအောင်မြင်ပါသည်။');
+
         return to_route('farmer#list');
     }
 
@@ -54,7 +56,11 @@ class CropController extends Controller
 
     public function deleteCrop($id)
     {
-        Crop::where('id', $id)->delete();
+        $crop = Crop::findOrFail($id);
+
+        $crop->delete();
+
+        Alert::success('Success Title', 'သီးနှံဖျက်ခြင်းအောင်မြင်ပါသည်။');
 
         return to_route('farmer#list');
     }
@@ -66,7 +72,7 @@ class CropController extends Controller
             'cropName' => 'required|string|unique:crops,name',
         ], [
             'cropName.required' => 'သီနှံအမည်ထည့်ရန်လိုအပ်သည်။',
-            'cropName.unique' => 'သီးနှံအမည်သည် ရှိပြီးဖြစ်သည်။',
+            'cropName.unique'   => 'သီးနှံအမည်သည် ရှိပြီးဖြစ်သည်။',
         ]);
     }
 }
