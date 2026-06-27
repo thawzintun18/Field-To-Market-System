@@ -78,13 +78,19 @@
                 confirmButtonText: "ဖျက်မည်",
                 cancelButtonText: "မဖျက်တော့ပါ"
             }).then((result) => {
-                if (result.isConfirmed) Swal.fire({
-                    title: "ဖျက်ပြီးပါပြီ!",
-                    text: "စိုက်ပျိုးမြေ အချက်အလက်ကို အောင်မြင်စွာ ဖျက်ပြီးပါပြီ။",
-                    icon: "success"
-                });
 
-                location.href = '/farmer/farmer/delete/' + id;
+                if (result.isConfirmed) {
+
+                    Swal.fire({
+                        title: "ဖျက်ပြီးပါပြီ!",
+                        text: "စိုက်ပျိုးမြေ အချက်အလက်ကို အောင်မြင်စွာ ဖျက်ပြီးပါပြီ။",
+                        icon: "success"
+                    }).then(() => {
+                        location.href = '/farmer/farmer/delete/' + id;
+                    });
+
+                }
+
             });
         }
     </script>
