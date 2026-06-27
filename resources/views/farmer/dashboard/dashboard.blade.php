@@ -143,7 +143,7 @@
     <section id="featured-services" class="featured-services section light-background">
 
         <div class="d-flex justify-content-center my-3">
-            <a href="" class="add-btn"><i class="fa-solid fa-plus"></i>စိုက်ပျိုးမြေများထပ်ထည့်ရန်</a>
+            <a href="" class="add-btn"><i class="me-2 fa-solid fa-plus"></i>စိုက်ပျိုးမြေများထပ်ထည့်ရန်</a>
         </div>
 
         <div class="container" data-aos="fade-up" data-aos-delay="100">

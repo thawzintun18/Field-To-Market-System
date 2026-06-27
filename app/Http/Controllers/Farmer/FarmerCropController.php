@@ -2,6 +2,7 @@
 namespace App\Http\Controllers\Farmer;
 
 use App\Http\Controllers\Controller;
+use App\Models\Crop;
 use App\Models\Farmer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -34,14 +35,13 @@ class FarmerCropController extends Controller
 
         Alert::success('Success Title', 'စိုက်ပျိုးမြေ အောင်မြင်စွာ ထည့်သွင်းပြီးပါပြီ။');
 
-        return back();
+        return to_route('farmer#list');
 
     }
 
     //update
     public function update(Request $request, $id)
     {
-
         $this->CheckData($request, 'update');
 
         $data = $this->GetData($request);
@@ -68,7 +68,7 @@ class FarmerCropController extends Controller
 
         Alert::success('Success Title', 'စိုက်ပျိုးမြေအချက်အလက်များကို အောင်မြင်စွာ ပြင်ဆင်ပြီးပါပြီ။');
 
-        return back();
+        return to_route('farmer#list');
 
     }
 
@@ -76,11 +76,11 @@ class FarmerCropController extends Controller
     private function CheckData($request, $action)
     {
         $checkData = [
-            'acre'    => 'required|numeric|min:0',
-            'lat'     => 'required|numeric|min:0',
-            'long'    => 'required|numeric|min:0',
-            'address' => 'required',
-            'region'  => 'required',
+            'acre'      => 'required|numeric|min:0',
+            'lat'  => 'required|numeric|min:0',
+            'long' => 'required|numeric|min:0',
+            'address'   => 'required',
+            'region'    => 'required',
         ];
 
         $checkData['image'] = $action == 'create' ? 'required|file|mimes:jpg,jpeg,png,svg' : 'file|mimes:jpg,jpeg,png,svg';
@@ -108,11 +108,17 @@ class FarmerCropController extends Controller
     //list
     public function list()
     {
-
         $farmer = Farmer::where('user_id', Auth::user()->id)
-            ->get();
+            ->get()
+            ->map(function ($item) {
+                $item->farm_size_acre = $this->enToMmNumber($item->farm_size_acre);
+                $item->latitude = $this->enToMmNumber($item->latitude);
+                $item->longitude = $this->enToMmNumber($item->longitude);
+                return $item;
+            });
+        $crops = Crop::get();
 
-        return view('farmer.farmer.list', compact('farmer'));
+        return view('farmer.farmer.list', compact('farmer', 'crops'));
     }
 
     //delete
@@ -124,7 +130,7 @@ class FarmerCropController extends Controller
 
         Farmer::where('id', $id)->delete();
 
-        return back();
+        return to_route('farmer#list');
 
     }
 
@@ -142,11 +148,25 @@ class FarmerCropController extends Controller
     //detail
     public function detail($id)
     {
+        $farmer = Farmer::where('id', $id)->first();
 
-        $farmer = $farmer = Farmer::where('id', $id)
-            ->first();
+        if (! $farmer) {
+            abort(404);
+        }
+        // dd($farmer->toarray());
+
+        $farmer->farm_size_acre = $this->enToMmNumber($farmer->farm_size_acre);
+        $farmer->latitude       = $this->enToMmNumber($farmer->latitude);
+        $farmer->longitude      = $this->enToMmNumber($farmer->longitude);
 
         return view('farmer.farmer.detail', compact('farmer'));
+    }
 
+    public function enToMmNumber($number)
+    {
+        $en = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+        $mm = ['၀', '၁', '၂', '၃', '၄', '၅', '၆', '၇', '၈', '၉'];
+
+        return str_replace($en, $mm, (string) $number);
     }
 }
