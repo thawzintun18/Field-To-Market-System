@@ -49,7 +49,7 @@
                                         <div class="card">
                                             <div class="card-body">
                                                 <h5 class=" text-center">စိုက်ပျိုးမြေဧက</h5>
-                                                <p class=" text-center fw-bold mt-1" > {{ $farmer->farm_size_acre }} </p>
+                                                <p class=" text-center fw-bold mt-1" > {{ $farmer->farm_size_acre }} ဧက</p>
                                             </div>
                                         </div>
                                     </div>

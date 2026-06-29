@@ -5,12 +5,12 @@
         <div class="d-md-flex justify-content-between my-5">
             <div class="">
                 <div class="">
-                    <h3 class=" fw-bold ">စိုက်ပျိုးမြေ အချက်အလက်များ ပြင်နိုင်ပါသည်</h3>
+                    <h3 class=" fw-bold ">စိုက်ပျိုးမြေများ ထပ်ထည့်နိုင်ပါသည်</h3>
                 </div>
                 <div class=" d-flex justify-content-start gap-2 mt-3">
                     <a href="{{ route('farmer#list') }}">စိုက်ပျိုးမြေစာရင်း</a>
                     <i class="fa-solid fa-arrow-right mt-1 text-primary"></i>
-                    <a href="{{ route('farmer#directPage') }}">စိုက်ပျိုးမြေသစ်ထည့်ခြင်း</a>
+                    <a href="{{ route('farmer#directPage') }}">စိုက်ပျိုးမြေအသစ်ထည့်ခြင်း</a>
                 </div>
             </div>
             <div class=" d-flex justify-content-end mt-1">
@@ -63,7 +63,7 @@
                                     @enderror
                                 </div>
                                 <div class="col-md-6 my-3" class=" mb-2">
-                                    <label for="">လောင်ဂျီကျု</label>
+                                    <label for="" class=" mb-2">လောင်ဂျီကျု</label>
                                     <input type="text" name="long" value="{{ old('long') }}" placeholder="လောင်ဂျီကျုထည့်ရန်"
                                         class="form-control @error('long')
                                     is-invalid

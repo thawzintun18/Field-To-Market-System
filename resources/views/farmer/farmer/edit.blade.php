@@ -5,7 +5,7 @@
         <div class="d-md-flex justify-content-between my-5">
             <div class="">
                 <div class="">
-                    <h3 class=" fw-bold ">စိုက်ပျိုးမြေများ ထပ်ထည့်နိုင်ပါသည်</h3>
+                    <h3 class=" fw-bold ">စိုက်ပျိုးမြေ အချက်အလက်များ ပြင်နိုင်ပါသည်</h3>
                 </div>
                 <div class=" d-flex justify-content-start gap-2 mt-3">
                     <a href="{{ route('farmer#list') }}">စိုက်ပျိုးမြေစာရင်း</a>
@@ -97,7 +97,7 @@
                                 </div>
                             </div>
                             <div class="d-flex justify-content-center">
-                                <button class=" create-btn">အချက်အလက် ပြောင်းလဲမည်</button>
+                                <button class=" btn btn-info rounded-5 px-3">အချက်အလက် ပြောင်းလဲမည်</button>
                             </div>
                         </form>
                     </div>

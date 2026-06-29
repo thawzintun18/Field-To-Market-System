@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->integer('farmer_crop_id')->nullable();
             $table->date('harvest_date')->nullable();
-            $table->string('quantity')->nullable();
+            $table->integer('quantity')->nullable();
             $table->string('unit')->nullable();
             $table->string('notes')->nullable();
             $table->timestamps();

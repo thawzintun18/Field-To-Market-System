@@ -3,9 +3,18 @@
 @section('content')
     <div class="container">
         <div class="d-md-flex justify-content-between my-5">
-            <h3 class=" fw-bold ">သီးနှံများ ထပ်ထည့်နိုင်ပါသည်</h3>
+            <div class="">
+                <div class="">
+                    <h3 class=" fw-bold ">သီးနှံများ ထပ်ထည့်နိုင်ပါသည်</h3>
+                </div>
+                <div class=" d-flex justify-content-start gap-2 mt-3">
+                    <a href="{{ route('farmer#list') }}">စိုက်ပျိုးမြေစာရင်း</a>
+                    <i class="fa-solid fa-arrow-right mt-1 text-primary"></i>
+                    <a href="{{ route('farmer#addCrop') }}">သီးနှံအသစ်ထည့်ခြင်း</a>
+                </div>
+            </div>
             <div class=" d-flex justify-content-end mt-1">
-                <a href="{{ route('farmer#list') }}" class=" btn btn-success rounded-5 px-5">နောက်သို့</a>
+                <div class=""><a href="{{ route('farmer#list') }}" class=" btn btn-success rounded-5 px-3">နောက်သို့</a></div>
             </div>
         </div>
 

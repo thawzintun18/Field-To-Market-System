@@ -41,11 +41,17 @@
                 <div class="d-flex justify-content-start">
                     <h3 class=" fw-bold">စိုက်ပျိုးမြေစာရင်း</h3>
                 </div>
-                <div class="d-flex justify-content-end mt-1">
-                    <a href="{{ route('farmer#directPage') }}" class=" add-btn"><i
-                            class=" me-2 fa-solid fa-plus"></i>စိုက်ပျိုးမြေများထပ်ထည့်ရန်</a>
-                    <a href="{{ route('farmer#addCrop') }}" class=" add-btn"><i
-                            class=" me-2 fa-solid fa-plus"></i>သီးနှံအသစ်ထပ်ထည့်ရန်</a>
+                <div class="d-flex justify-content-end">
+                    <div class="d-md-flex justify-content-end mt-1">
+                        <div class=" me-2">
+                            <a href="{{ route('farmer#directPage') }}" class=" add-btn"><i
+                                    class=" me-2 fa-solid fa-plus"></i>စိုက်ပျိုးမြေများထပ်ထည့်ရန်</a>
+                        </div>
+                        <div class=" mt-md-0 mt-4">
+                            <a href="{{ route('farmer#addCrop') }}" class=" add-btn"><i
+                                    class=" me-2 fa-solid fa-plus"></i>သီးနှံအသစ်ထပ်ထည့်ရန်</a>
+                        </div>
+                    </div>
                 </div>
             </div>
             <hr>
@@ -62,15 +68,15 @@
                                 <p class=" mt-3">စိုက်ပျိုးမြေ၏ အချက်အလက်များ</p>
                                 <div class="d-flex justify-content-between">
                                     <p>လတ္တီကျု</p>
-                                    <p>{{ $item->latitude }} ° N</p>
+                                    <p class="fs-5 fw-100">{{ $item->latitude }} ° N</p>
                                 </div>
                                 <div class="d-flex justify-content-between">
                                     <p>လောင်ဂျီကျု</p>
-                                    <p>{{ $item->longitude }} ° E</p>
+                                    <p class="fs-5 fw-100">{{ $item->longitude }} ° E</p>
                                 </div>
                                 <div class="d-flex justify-content-between">
                                     <p>စိုက်ပျိုးမြေဧက</p>
-                                    <p>{{ $item->farm_size_acre }}</p>
+                                    <p class="fs-5 fw-100">{{ $item->farm_size_acre }} ဧက</p>
                                 </div>
                                 <div class=" d-flex justify-content-center my-2">
                                     <a href="{{ route('farmer#detail', $item->id) }}"
@@ -83,7 +89,7 @@
                                         onclick="DeleteData({{ $item->id }})"><i
                                             class="fa-solid fa-trash fs-md-5 fs-5"></i></button>
                                 </div>
-                                <a href="service-details.html" class="service-link">
+                                <a href="{{ route('farmer-crop#directPage' , ["farmer_id" => $item->id]) }}" class="service-link">
                                     <span>သီးနှံများစိုက်ပျိုးရန်</span>
                                     <i class="bi bi-arrow-right"></i>
                                 </a>

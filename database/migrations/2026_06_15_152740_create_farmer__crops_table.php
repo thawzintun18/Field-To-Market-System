@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('crop')->nullable();
             $table->date('planting_date')->nullable();
             $table->date('estimated_harvest_date')->nullable();
+            $table->integer('total_quantity')->nullable();
             $table->string('status')->nullable();
             $table->timestamps();
         });

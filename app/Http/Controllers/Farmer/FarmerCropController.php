@@ -116,6 +116,7 @@ class FarmerCropController extends Controller
                 $item->longitude = $this->enToMmNumber($item->longitude);
                 return $item;
             });
+
         $crops = Crop::get();
 
         return view('farmer.farmer.list', compact('farmer', 'crops'));

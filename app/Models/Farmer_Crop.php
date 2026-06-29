@@ -11,6 +11,7 @@ class Farmer_Crop extends Model
         'crop',
         'planting_date',
         'estimated_harvest_date',
+        'total_quantity',
         'status',
     ];
 }
