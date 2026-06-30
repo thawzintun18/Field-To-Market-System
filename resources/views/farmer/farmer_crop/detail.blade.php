@@ -1,0 +1,135 @@
+@extends('farmer.layout.main')
+
+@section('content')
+
+    <div class="container">
+        <div class="d-md-flex justify-content-between my-5">
+            <div class="">
+                <div class="">
+                    <h3 class=" fw-bold ">သီးနှံစိုက်ပျိုးမှု အသေးစိတ်အချက်အလက်များ</h3>
+                </div>
+                <div class=" d-flex justify-content-start gap-2 mt-3">
+                    <a href="{{ route('farmer-crop#list') }}">သီးနှံစိုက်ပျိုးမှုစာရင်း</a>
+                    <i class="fa-solid fa-arrow-right mt-1 text-primary"></i>
+                    <a href="{{ route('farmer-crop#detail', $farmer_crop[0]->id) }}">သီးနှံစိုက်ပျိုးမှု အသေးစိတ်ကြည့်ရှုရန်</a>
+                </div>
+            </div>
+            <div class=" d-flex justify-content-end mt-1">
+                <div class=""><a href="{{ route('farmer-crop#list') }}" class=" btn btn-success rounded-5 px-3">နောက်သို့</a></div>
+            </div>
+        </div>
+
+        <div class="row my-3">
+            <div class="col-md-10 offset-md-1">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-5">
+                                <img src="{{ asset('FarmerImages/' . $farmer_crop[0]->image) }}" class=" img-thumbnail w-100 my-3" height="200px" alt="">
+
+                                <div class="card mt-3">
+                                    <div class="card-body">
+                                        <div class="row my-3">
+                                            <div class="col-md-6">
+                                                <h5 class=" text-md-start text-center">စိုက်ပျိုးထားသော သီးနှံ</h5>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p class=" text-md-start text-center mt-md-0 fs-5 mt-3 fw-bold"> {{ $farmer_crop[0]->name }} </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-7">
+                                <div class="row mt-3">
+                                    <div class="col-md-4 mt-md-0 mt-2">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <h5 class=" text-center">လတ္တီကျု</h5>
+                                                <p class=" text-center fs-5 fw-bold"> {{ $farmer_crop[0]->latitude }} ° N</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mt-md-0 mt-2">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <h5 class=" text-center">လောင်ဂျီကျု</h5>
+                                                <p class=" text-center fs-5 fw-bold"> {{ $farmer_crop[0]->longitude }} ° E</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mt-md-0 mt-2">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <h5 class=" text-center">စိုက်ပျိုးမြေဧက</h5>
+                                                <p class=" text-center fs-5 fw-bold mt-1" > {{ $farmer_crop[0]->farm_size_acre }} ဧက</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mt-3">
+                                    {{-- <div class="col-md-4 mt-md-0 mt-2">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <h5 class=" text-center">စိုက်ပျိုးထားသော သီးနှံ</h5>
+                                                <p class=" text-center fs-5 fw-bold"> {{ $farmer_crop[0]->name }} ° N</p>
+                                            </div>
+                                        </div>
+                                    </div> --}}
+                                    <div class="col-md-6 mt-md-0 mt-2">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <h5 class=" text-center">စိုက်ပျိုးသည့်ရက်စွဲ</h5>
+                                                <p class=" text-center fs-5 fw-bold"> {{ $farmer_crop[0]->planting_date }} </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mt-md-0 mt-2">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <h5 class=" text-center">ခန့်မှန်းရိတ်သိမ်းမည့်ရက်စွဲ</h5>
+                                                <p class=" text-center fs-5 fw-bold mt-1" > {{ $farmer_crop[0]->estimated_harvest_date }} </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card mt-3">
+                                    <div class="card-body">
+                                        <div class="row my-3">
+                                            <div class="col-md-4">
+                                                <h5 class=" text-md-start text-center">စုစုပေါင်းသီးနှံအထွက်ပမာဏ</h5>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <p class=" text-md-start text-center mt-md-0 fs-5 mt-3 fw-bold"> {{ $farmer_crop[0]->total_quantity == null ? 'မရှိသေးပါ' : $farmer_crop[0]->total_quantity }} </p>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="row my-3">
+                                            <div class="col-md-4">
+                                                <h5 class=" text-md-start text-center">တိုင်းဒေသကြီး</h5>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <p class=" text-md-start text-center mt-md-0 fs-5 mt-3 fw-bold"> {{ $farmer_crop[0]->region }} </p>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="row my-3">
+                                            <div class="col-md-4">
+                                                <h5 class=" text-md-start text-center">စိုက်ပျိုးမြေ၏နေရာ</h5>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <p class=" text-md-start text-center mt-md-0 fs-5 mt-3 fw-bold"> {{ $farmer_crop[0]->address }} </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+@endsection

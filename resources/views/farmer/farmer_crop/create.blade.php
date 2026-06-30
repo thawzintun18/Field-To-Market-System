@@ -8,9 +8,9 @@
                     <h3 class=" fw-bold ">သီးနှံစိုက်ပျိုးမှု အသစ်ထည့်နိုင်ပါသည်</h3>
                 </div>
                 <div class=" d-flex justify-content-start gap-2 mt-3">
-                    <a href="{{ route('farmer#list') }}">စိုက်ပျိုးမြေစာရင်း</a>
+                    <a href="{{ route('farmer-crop#list') }}">သီးနှံစိုက်ပျိုးမှုစာရင်း</a>
                     <i class="fa-solid fa-arrow-right mt-1 text-primary"></i>
-                    <a href="{{ route('farmer-crop#directPage') }}">သီးနှံစိုက်ပျိုးမှု အသစ်ထည့်ခြင်း</a>
+                    <a href="{{ route('farmer-crop#directPage') }}">သီးနှံစိုက်ပျိုးမှုအသစ်ထည့်ခြင်း</a>
                 </div>
             </div>
             <div class=" d-flex justify-content-end mt-1">

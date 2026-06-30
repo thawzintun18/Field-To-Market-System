@@ -11,7 +11,7 @@
                 <div class=" d-flex justify-content-start gap-2 mt-3">
                     <a href="{{ route('farmer#list') }}">စိုက်ပျိုးမြေစာရင်း</a>
                     <i class="fa-solid fa-arrow-right mt-1 text-primary"></i>
-                    <a href="{{ route('farmer#detail', $farmer->id) }}">အသေးစိတ်ကြည့်ရှုရန်</a>
+                    <a href="{{ route('farmer#detail', $farmer->id) }}">စိုက်ပျိုးမြေ အသေးစိတ်ကြည့်ရှုရန်</a>
                 </div>
             </div>
             <div class=" d-flex justify-content-end mt-1">
@@ -33,7 +33,7 @@
                                         <div class="card">
                                             <div class="card-body">
                                                 <h5 class=" text-center">လတ္တီကျု</h5>
-                                                <p class=" text-center fw-bold"> {{ $farmer->latitude }} ° N</p>
+                                                <p class=" text-center fs-5 fw-bold"> {{ $farmer->latitude }} ° N</p>
                                             </div>
                                         </div>
                                     </div>
@@ -41,7 +41,7 @@
                                         <div class="card">
                                             <div class="card-body">
                                                 <h5 class=" text-center">လောင်ဂျီကျု</h5>
-                                                <p class=" text-center fw-bold"> {{ $farmer->longitude }} ° E</p>
+                                                <p class=" text-center fs-5 fw-bold"> {{ $farmer->longitude }} ° E</p>
                                             </div>
                                         </div>
                                     </div>
@@ -49,7 +49,7 @@
                                         <div class="card">
                                             <div class="card-body">
                                                 <h5 class=" text-center">စိုက်ပျိုးမြေဧက</h5>
-                                                <p class=" text-center fw-bold mt-1" > {{ $farmer->farm_size_acre }} ဧက</p>
+                                                <p class=" text-center fs-5 fw-bold mt-1" > {{ $farmer->farm_size_acre }} ဧက</p>
                                             </div>
                                         </div>
                                     </div>
@@ -61,7 +61,7 @@
                                                 <h5 class=" text-md-start text-center">တိုင်းဒေသကြီး</h5>
                                             </div>
                                             <div class="col-md-8">
-                                                <p class=" text-md-start text-center mt-md-0 mt-3 fw-bold"> {{ $farmer->region }} </p>
+                                                <p class=" text-md-start text-center mt-md-0 fs-5 mt-3 fw-bold"> {{ $farmer->region }} </p>
                                             </div>
                                         </div>
                                         <hr>
@@ -70,7 +70,7 @@
                                                 <h5 class=" text-md-start text-center">စိုက်ပျိုးမြေ၏နေရာ</h5>
                                             </div>
                                             <div class="col-md-8">
-                                                <p class=" text-md-start text-center mt-md-0 mt-3 fw-bold"> {{ $farmer->address }} </p>
+                                                <p class=" text-md-start text-center mt-md-0 fs-5 mt-3 fw-bold"> {{ $farmer->address }} </p>
                                             </div>
                                         </div>
                                     </div>

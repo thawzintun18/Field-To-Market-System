@@ -35,7 +35,10 @@ Route::group(['prefix' => 'farmer'], function () {
         Route::post('create' , [FarmerAndCropController::class , 'create'])->name('farmer-crop#create');
         Route::get('list' , [FarmerAndCropController::class , 'list'])->name('farmer-crop#list');
         Route::post('select' , [FarmerAndCropController::class , 'select'])->name('farmer-crop#select');
-
+        Route::get('delete/{id}' , [FarmerAndCropController::class , 'delete'])->name('farmer-crop#delete');
+        Route::get('detail/{id}' , [FarmerAndCropController::class , 'detail'])->name('farmer-crop#detail');
+        Route::get('edit/{id}' , [FarmerAndCropController::class , 'edit'])->name('farmer-crop#edit');
+        Route::post('update/{id}' , [FarmerAndCropController::class , 'update'])->name('farmer-crop#update');
     });
 
 });

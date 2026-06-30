@@ -29,7 +29,7 @@ class FarmerAndCropController extends Controller
 
         $crop = Crop::select('id', 'name')->get();
 
-        return view('farmer.farmer_crop.create', compact('farmer', 'crop' , 'selected_farmer_id'));
+        return view('farmer.farmer_crop.create', compact('farmer', 'crop', 'selected_farmer_id'));
     }
 
     //create
@@ -48,11 +48,40 @@ class FarmerAndCropController extends Controller
 
     }
 
+    //update
+    public function update(Request $request , $id)
+    {
+        // dd($request->toArray());
+
+        $this->UpdateCheckData($request);
+
+        $Updatedata = $this->UpdateGetData($request);
+
+        // dd($Updatedata);
+
+        Farmer_Crop::where('id', $id)
+            ->update($Updatedata);
+
+        Alert::success('Success Title', 'သီးနှံစိုက်ပျိုးမှုအချက်အလက်များကို အောင်မြင်စွာ ပြင်ဆင်ပြီးပါပြီ။');
+
+        return to_route('farmer-crop#list');
+
+    }
+
     //CheckData
     private function CheckData($request)
     {
         $request->validate([
             'farmer_id'     => 'required',
+            'crop_id'       => 'required',
+            'planting_date' => 'required',
+            'harvest_date'  => 'required',
+        ]);
+    }
+
+    //UpdateCheckData
+    private function UpdateCheckData($request){
+        $request->validate([
             'crop_id'       => 'required',
             'planting_date' => 'required',
             'harvest_date'  => 'required',
@@ -67,8 +96,17 @@ class FarmerAndCropController extends Controller
             'crop'                   => $request->crop_id,
             'planting_date'          => $request->planting_date,
             'estimated_harvest_date' => $request->harvest_date,
-            'total_quantity'         => 0,
             'status'                 => 'PLANTED',
+        ];
+    }
+
+    //UpdateGetData
+    private function UpdateGetData($request)
+    {
+        return [
+            'crop'                   => $request->crop_id,
+            'planting_date'          => $request->planting_date,
+            'estimated_harvest_date' => $request->harvest_date,
         ];
     }
 
@@ -103,6 +141,31 @@ class FarmerAndCropController extends Controller
         return view('farmer.farmer_crop.list', compact('FarmerCrop', 'farmer'));
     }
 
+    //detail
+    public function detail($id)
+    {
+
+        $farmer_crop = Farmer_Crop::leftJoin('farmers', 'farmer__crops.farmer_id', 'farmers.id')
+            ->leftJoin('crops', 'farmer__crops.crop', 'crops.id')
+            ->select('farmer__crops.*', 'farmers.farm_size_acre', 'farmers.image', 'farmers.latitude', 'farmers.longitude', 'farmers.address', 'farmers.region', 'crops.name')
+            ->where('farmer__crops.id', $id)
+            ->get()
+            ->map(function ($item) {
+                $item->farm_size_acre         = $this->enToMmNumber($item->farm_size_acre);
+                $item->latitude               = $this->enToMmNumber($item->latitude);
+                $item->longitude              = $this->enToMmNumber($item->longitude);
+                $item->total_quantity         = $this->enToMmNumber($item->total_quantity);
+                $item->planting_date          = $this->enToMmNumber(Carbon::parse($item->planting_date)->format('d-m-Y'));
+                $item->estimated_harvest_date = $this->enToMmNumber(Carbon::parse($item->estimated_harvest_date)->format('d-m-Y'));
+                return $item;
+            });
+
+        // dd($farmer_crop[0]->toarray());
+
+        return view('farmer.farmer_crop.detail', compact('farmer_crop'));
+
+    }
+
     //select
     public function select(Request $request)
     {
@@ -125,5 +188,28 @@ class FarmerAndCropController extends Controller
         $mm = ['၀', '၁', '၂', '၃', '၄', '၅', '၆', '၇', '၈', '၉'];
 
         return str_replace($en, $mm, (string) $number);
+    }
+
+    //delete
+    public function delete($id)
+    {
+
+        Farmer_Crop::where('id', $id)->delete();
+
+        return back();
+
+    }
+
+    //edit
+    public function edit($id)
+    {
+
+        $farmer_crop = Farmer_Crop::where('id', $id)
+            ->select('id', 'crop', 'planting_date', 'estimated_harvest_date')
+            ->get();
+
+        $crop = Crop::select('id', 'name')->get();
+
+        return view('farmer.farmer_crop.edit', compact('farmer_crop', 'crop'));
     }
 }

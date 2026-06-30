@@ -4,7 +4,7 @@
     <div class="container">
         <div class="d-md-flex justify-content-between my-5">
             <div class="d-flex justify-content-start">
-                <h3 class=" fw-bold">သီးနှံစိုက်ပျိုးထားသော စိုက်ပျိုးမြေစာရင်း</h3>
+                <h3 class=" fw-bold">သီးနှံစိုက်ပျိုးမှုစာရင်း</h3>
             </div>
             <div class="d-flex justify-content-end mt-1">
                 <a href="{{ route('farmer-crop#directPage') }}" class=" add-btn"><i
@@ -55,14 +55,14 @@
                                     <ul class="dropdown-menu dropdown-menu-end">
 
                                         <li>
-                                            <a class="dropdown-item" href="#">
+                                            <a class="dropdown-item" href="{{ route('farmer-crop#detail' , $item->id) }}">
                                                 <i class="fa-solid fa-eye text-primary me-2"></i>
                                                 အသေးစိတ်ကြည့်ရန်
                                             </a>
                                         </li>
 
                                         <li>
-                                            <a class="dropdown-item" href="#">
+                                            <a class="dropdown-item" href="{{ route('farmer-crop#edit' , $item->id) }}">
                                                 <i class="fa-solid fa-pen-to-square me-2"></i>
                                                 ပြင်ရန်
                                             </a>
@@ -73,10 +73,15 @@
                                         </li>
 
                                         <li>
-                                            <a class="dropdown-item text-danger" href="#">
+                                            {{-- <a class="dropdown-item text-danger" href="#">
                                                 <i class="fa-solid fa-trash me-2"></i>
                                                 ဖျက်ရန်
-                                            </a>
+                                            </a> --}}
+                                            <button class="dropdown-item text-danger"
+                                                onclick="DeleteData({{ $item->id }})">
+                                                <i class="fa-solid fa-trash me-2"></i>
+                                                ဖျက်ရန်
+                                            </button>
                                         </li>
 
                                     </ul>
@@ -165,6 +170,37 @@
 
         </div>
     </div>
+@endsection
+
+@section('DeleteData')
+    <script>
+        function DeleteData(id) {
+            Swal.fire({
+                title: "သေချာပါသလား?",
+                text: "ဖျက်ပြီးပါက ပြန်လည်ရယူ၍ မရနိုင်ပါ။",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "ဖျက်မည်",
+                cancelButtonText: "မဖျက်တော့ပါ"
+            }).then((result) => {
+
+                if (result.isConfirmed) {
+
+                    Swal.fire({
+                        title: "ဖျက်ပြီးပါပြီ!",
+                        text: "သီးနှံစိုက်ပျိုးမှု အချက်အလက်ကို အောင်မြင်စွာ ဖျက်ပြီးပါပြီ။",
+                        icon: "success"
+                    }).then(() => {
+                        location.href = '/farmer/farmer-crop/delete/' + id;
+                    });
+
+                }
+
+            });
+        }
+    </script>
 @endsection
 
 @section('JS-content')
